@@ -51,7 +51,7 @@ Emacs/stumpwm files to check out. It started out with
 [Emacs-Live](https://github.com/overtone/emacs-live) but has changed a
 bit over time. Here's the gist:
 
-- vim-like keybindings (`.live-packs/evil/config/evil-leader-conf.el`)
+- vim-like keybindings ([evil-leader-conf.el](https://github.com/greenyouse/dotfiles/blob/master/.live-packs/evil/config/evil-leader-conf.el))
 - excellent Clojure(Script) support
 - basic support for lots of langs
 - decent web dev support
