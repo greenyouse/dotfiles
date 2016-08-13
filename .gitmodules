@@ -191,3 +191,6 @@
 [submodule ".live-packs/clojure/lib/popup-el"]
         path = .live-packs/clojure/lib/popup-el
         url = git://github.com/auto-complete/popup-el.git
+[submodule ".emacs.d"]
+        path = .emacs.d
+        url = https://github.com/overtone/emacs-live
