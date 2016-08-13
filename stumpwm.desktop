@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=StumpWM
+Comment=For using StumpWM
+Exec=/usr/local/bin/stumpwm
+Icon=
+Type=Application

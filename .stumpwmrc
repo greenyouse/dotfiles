@@ -1,0 +1,157 @@
+;; -*-lisp-*-
+
+(in-package :stumpwm)
+
+(setf *startup-message*
+      "Let the hacking commence!")
+
+;; wallpaper
+(run-shell-command "display -window root /home/shingen/Pictures/wallpapers/winter.jpg")
+
+(defcommand reader () ()
+            "Speak the selected text"
+            (run-shell-command "xsel | espeak -s 200"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; App commands
+
+(defcommand firefox () ()
+            "Run or raise Firefox"
+            (run-or-raise "firefox -P normal" '(:class "Firefox")))
+
+(defcommand chromium () ()
+            "Run or raise Chromium"
+            (run-or-raise "chromium-browser" '(:class "chromium")))
+
+(defcommand chrome-dev () ()
+            "Run or raise the dev version of Chromium"
+            (run-or-raise "chrome-dev" '(:class "chromium")))
+
+(defcommand inkscape () ()
+            "Run or raise Inkscape"
+            (run-or-raise "inkscape" '(:class "Inkscape")))
+
+(defcommand tor () ()
+            "Run or raise Tor"
+            (run-or-raise "tor-browser" '(:class "Tor")))
+
+(defcommand evince () ()
+            "Run or raise Evince"
+            (run-or-raise "evince" '(:class "Evince")))
+
+(defcommand rhythmbox () ()
+            "Run or raise Rhythmbox"
+            (run-or-raise "rhythmbox" '(:class "Rhythmbox")))
+
+(defcommand gimp () ()
+            "Run or raise GIMP"
+            (run-or-raise "gimp" '(:class "GIMP")))
+
+(defcommand terminal () ()
+            (run-or-raise "gnome-terminal" '(:class "terminal")))
+
+(defcommand remote-emacs () ()
+            (run-or-raise "emacs" '(:title "emacs@Kiyosu")))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Change Keyboard languages with ibus
+
+(defcommand modmap () ()
+            "Reset Xmodmap to default keys"
+            (run-shell-command "xmodmap ~/.Xmodmap"))
+
+;; used as cangjie but I like looking at unused characters for review
+(defcommand to-zn-quick () ()
+            "Switch to quick Chinese input"
+            (run-shell-command "ibus engine quick; xmodmap ~/.Xmodmap"))
+
+;; for getting started with chinese
+(defcommand to-zn-pinyin () ()
+            "Switch to pinyin Chinese input"
+            (run-shell-command "ibus engine pinyin; xmodmap ~/.Xmodmap"))
+
+;; TODO: fix so xmodmap doesn't override ibus
+(defcommand to-ru () ()
+            "Switch to Russian"
+            (run-shell-command "ibus engine xkb:ru::rus; xmodmap ~/.Xmodmap"))
+
+(defcommand to-en () ()
+            "Switch to 'merican English input :p"
+            (run-shell-command "ibus engine xkb:us::eng; xmodmap ~/.Xmodmap"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; A/V stuff
+
+(define-keysym #x1008ff11 "XF86AudioLowerVolume")
+(define-keysym #x1008ff12 "XF86AudioMute")
+(define-keysym #x1008ff13 "XF86AudioRaiseVolume")
+
+(defcommand vol-up () ()
+            "Turns up the volume"
+            (run-shell-command "amixer set Master 2+"))
+
+(defcommand vol-mute () ()
+            "Toggles volume muting"
+            (run-shell-command "amixer set Master toggle"))
+
+(defcommand vol-down () ()
+            "Turns down the volume"
+            (run-shell-command "amixer set Master 2-"))
+
+(define-keysym #x1008ff03 "XF86MonBrightnessDown")
+(define-keysym #x1008ff02 "XF86MonBrightnessUp")
+
+(defcommand brightness-up () ()
+            "Turns up the monitor's brightness"
+            (run-shell-command "xbacklight -inc 10%"))
+
+(defcommand brightness-down () ()
+            "Turns down the monitor's brightness"
+            (run-shell-command "xbacklight -dec 10%"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Menus
+
+(set-prefix-key (kbd "C-;"))
+
+(define-key *root-map* (kbd "C-'") "windowlist")
+(define-key *root-map* (kbd "C-z") "reader")
+(define-key *root-map* (kbd "C-,") "colon")
+(define-key *root-map* (kbd "c")  "terminal")
+(define-key *root-map* (kbd "C-r") "remote-emacs")
+(define-key *root-map* (kbd "SPC") "fother")
+(define-key *root-map* (kbd "C-SPC") "fnext")
+(define-key *root-map* (kbd "o") "pull-hidden-next")
+(define-key *root-map* (kbd "C-o") "pull-hidden-next")
+
+(defvar *app-map* (make-sparse-keymap) "Launches and controls applications.")
+(define-key *top-map* (kbd "C-'") '*app-map*)
+(define-key *app-map* (kbd "f") "firefox")
+(define-key *app-map* (kbd "c") "chromium")
+(define-key *app-map* (kbd "d") "chrome-dev")
+(define-key *app-map* (kbd "i") "inkscape")
+(define-key *app-map* (kbd "t") "tor")
+(define-key *app-map* (kbd "e") "evince")
+(define-key *app-map* (kbd "r") "rhythmbox")
+(define-key *app-map* (kbd "p") "gimp")
+(define-key *app-map* (kbd "g") "abort")
+(define-key *app-map* (kbd "C-g") "abort")
+
+(defvar *lang-map* (make-sparse-keymap) "Changes keyboard inputs")
+(define-key *top-map* (kbd "C-/") '*lang-map*)
+(define-key *lang-map* (kbd "x") "modmap")
+(define-key *lang-map* (kbd "q") "to-zn-quick")
+(define-key *lang-map* (kbd "p") "to-zn-pinyin")
+(define-key *lang-map* (kbd "r") "to-ru")
+(define-key *lang-map* (kbd "e") "to-en")
+(define-key *lang-map* (kbd "g") "abort")
+(define-key *lang-map* (kbd "C-g") "abort")
+
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "vol-up")
+(define-key *top-map* (kbd "XF86AudioMute") "vol-mute")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "vol-down")
+(define-key *top-map* (kbd "XF86MonBrightnessUp") "brightness-up")
+(define-key *top-map* (kbd "XF86MonBrightnessDown") "brightness-down")

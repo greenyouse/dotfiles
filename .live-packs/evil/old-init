@@ -1,0 +1,143 @@
+                                        ; EVIL Pack
+
+;; nice emacs macros that work with evil-leader go here.
+(fset 'cljs-comment
+      [?I ?\( ?c ?o ?m ?m ?e ?n ?t ?  escape ?, ?l])
+(fset 'cljs-remove-comment
+      "Hl,kdabxV}=")
+(fset 'cljs-println
+      [?I ?\( ?p ?r ?i ?n ?t ?l ?n ?  escape ?, ?l])
+(fset 'cljs-reader-comment
+      [?I ? ?# ?_ ? ? escape])
+(fset 'cljs-remove-reader-comment
+      [?I escape ?v ?l ?l ?x ?V ?\} ?=])
+(fset 'back-two-buffers
+      ",b\C-[OC\C-m")
+(fset 'close-shell
+      [?, ?x ?\C-m ?y])
+
+(defun lein-project-root (&optional file)
+  "Finds the leiningen project root"
+  (locate-dominating-file (or file default-directory) "project.clj"))
+
+;; FIXME: make the message stay for longer :)
+(defun nrepl-cljs-reload ()
+  "Reloads the Clojure(Script) files inside src.
+   When doing a bREPL, scrub the repl state with moz-repl (,mr) and run this
+   to reset the REPL state (kinda similar to tools.namespace?). Add more folders
+   if needed."
+  (let ((src-files (shell-command-to-string (concat "find " (expand-file-name "src" (lein-project-root)) " -type f | grep \"**.clj\""))))
+    (mapcar (lambda (some-file)
+              (nrepl-load-file some-file))
+            (split-string (concat src-files))))
+  (message "Files loaded, hack away!"))
+
+(defun cljs-lookup()
+  "Lookup the item under the cursor on ClojureDocs"
+  (interactive)
+  (let (myWord myUrl)
+    (setq myWord
+          (if (region-active-p)
+              (buffer-substring-no-properties (region-beginning) (region-end))
+            (thing-at-point 'symbol)))
+    (setq myWord (replace-regexp-in-string " " "_" myWord))
+    (setq myUrl (concat "http://clojuredocs.org/search?x=0&y=0&q=" myWord))
+    (browse-url myUrl)))
+
+;; some custom emacs functions should eventually use this
+(defun my-macro-query ()
+  "Prompt for input using minibuffer during kbd macro execution.
+    With prefix argument, allows you to select what prompt string to use.
+    If the input is non-empty, it is inserted at point."
+  (let* ((prompt (if arg (read-from-minibuffer "PROMPT: ") "Input: "))
+         (input (minibuffer-with-setup-hook (lambda () (kbd-macro-query t))
+                  (read-from-minibuffer prompt))))
+    (unless (string= "" input) (insert input))))
+
+
+
+(live-add-pack-lib "evil")
+(live-add-pack-lib "evil-leader")
+
+(require 'evil-leader)
+(setq evil-leader/in-all-states t)
+(setq evil-leader/leader ",")
+(evil-mode nil)
+(global-evil-leader-mode 1)
+(evil-leader/set-key
+  "f" 'find-file
+  "b" 'switch-to-buffer
+  "x" 'kill-buffer
+  "s" 'evil-buffer
+  "d" 'back-two-buffers
+  "w" (kbd "C-x o")
+  "l" 'live-paredit-forward-slurp-sexp-neatly  ;; paredit settings
+  "k" 'paredit-forward-barf-sexp
+  "j" 'paredit-backward-barf-sexp
+  "h" 'paredit-backward-slurp-sexp
+  "mn" 'nrepl-jack-in
+  "mq" 'nrepl-quit
+  "mb" 'nrepl-switch-to-repl-buffer
+  "ma" (kbd "C-M-x") ;; eval-form
+  "mcc" (kbd "C-c M-o") ;; clear REPL
+  "mf" (kbd "C-c C-l") ;; eval-file
+  "mcn" (kbd "C-c M-n") ;; switch to current namespace
+  "mcs" (kbd "C-c C-s") ;; show source
+  "mzz" (kbd "A (cemerick.piggieback/cljs-repl)") ;; launch cljs pigieback repl (no js interop)
+             ;; \ escapes followed by i allow for spaces in macro text
+  "mzb" (kbd "A (require\ i'cljs.repl.browser) (cemerick.piggieback/cljs-repl\ i:repl-env (cljs.repl.browser/repl-env\ i:port\ i9000))") ;; cljs brepl
+  "mzp" (kbd "A  (cemerick.piggieback/cljs-repl\ i:repl-env\ i(cemerick.austin/exec-env))") ;; phantomjs brepl (preferred method)
+  "mt" (kbd "A (run-tests)") ;; for cljs testing, reload with browser refresh for now
+  "ml" (lambda () (interactive) (nrepl-cljs-reload)) ;; reload files automagically for nrepl
+  "mr" (kbd "C-x p") ;; refresh browser ala moz-repl
+  "o1" (lambda () (interactive) (hide-sublevels 1))
+  "o2" (lambda () (interactive) (hide-sublevels 2))
+  "o3" (lambda () (interactive) (hide-sublevels 3))
+  "o4" (lambda () (interactive) (hide-sublevels 4))
+  "o5" (lambda () (interactive) (hide-sublevels 5))
+  "o6" (lambda () (interactive) (hide-sublevels 1) (show-children 1))
+  "o7" (lambda () (interactive) (hide-sublevels 1) (show-children 2))
+  "o8" (lambda () (interactive) (hide-sublevels 1) (show-children 3))
+  "o9" (lambda () (interactive) (hide-sublevels 1) (show-children 4))
+  "o0" (lambda () (interactive) (hide-sublevels 1) (show-children 5))
+  "oo" 'org-cycle ;; so umm, this section is excessive maybe switch to emacs mode
+  "op" 'org-global-cycle
+  "os" 'org-sort
+  "od" 'org-deadline
+  "oq" 'org-schedule
+  "oc" 'org-set-tags-command
+  "ot" 'org-todo
+  "or" 'org-refile
+  "oz" 'org-capture
+  "oa" 'org-agenda
+  "o<<" 'org-promote-subtree
+  "o>>" 'org-demote-subtree
+  "o>." 'org-move-subtree-down
+  "o<." 'org-move-subtree-up
+  "ob" 'org-backward-heading-same-level
+  "oB" 'org-forward-heading-same-level
+  "ol" 'org-metaright  ;; Hey, these are helpful but kinda cumbersome to type
+  "oh" 'org-metaleft
+  "oj" 'org-metadown
+  "ok" 'org-metaup
+  "oL" 'org-shiftmetaright
+  "oH" 'org-shiftmetadown
+  "oJ" 'org-shiftmetadown
+  "oK" 'org-shiftmetaup
+  "o/" 'org-goto
+  "oex" 'org-export
+  "cc" 'cljs-comment
+  "cd" 'cljs-remove-comment
+  "cp" 'cljs-println
+  "cr" 'cljs-reader-comment
+  "ce" 'cljs-remove-reader-comment
+  "cu" 'cljs-lookup
+  "ee" 'smex
+  "es" 'shell
+  "ed" 'close-shell)
+
+
+(require 'evil)
+(define-key evil-normal-state-map "H" 'evil-beginning-of-line)  ;; jump to end/beginning of line
+(define-key evil-normal-state-map "L" 'evil-end-of-line)
+(evil-mode 1)

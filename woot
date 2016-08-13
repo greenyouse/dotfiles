@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# A basic backup/deploy script for great sanity
+
+dotdir="${HOME}/.config/dotfiles"
+RED='\u001b[31m'
+
+color-text () {
+    printf "${1} \u001b[0m\n\n"
+}
+
+alert () {
+    color-text "${RED} ${1}"
+}
+
+help () {
+    echo $'Usage: woot [options]\n'
+    echo $'Options:\n install\n backup [backup-directory]\n'
+}
+
+# check that a second arg was given otherwise throw with the err msg
+arg-check () {
+    if [[ -z $2 ]]; then
+        help
+        alert "${1}"
+        exit 1
+    fi
+}
+
+# TODO add another script for VPNs + private files like ssh
+install () {
+    if !(hash nix-env >/dev/null 2>&1); then
+        echo "Installing nix..."
+        curl https://nixos.org/nix/install | sh
+
+        # add a call for nix and initialize it
+        echo '\n#for loading nix\n. /home/nobunaga/.nix-profile/etc/profile.d/nix.sh' >> ~/.profile
+        . /home/nobunaga/.nix-profile/etc/profile.d/nix.sh
+    fi
+
+    echo "Grabbing nix packages"
+    nix-env -f packages.nix -i
+
+    echo "Getting apt packages"
+    sudo apt-get install `cat extra-packages.txt`
+
+    echo "Writing files from backup"
+    for dir in `cat backup.list`; do
+        destination=`dirname ${dir}`
+        file=`basename ${dir}`
+        eval 'rsync -avz ${file} ${destination}'
+    done
+
+    # simple, error prone command for linking dotfiles to $HOME
+    printf 'Linking dotfiles\n\n'
+    for file in `find ${dotdir} -maxdepth 1 -name '.[a-zA-Z0-9]*' -printf '%f\0 '`; do
+        ln -s "${dotdir}/${file}" "${HOME}/${file}"
+    done
+
+    eval 'cowsay "Install complete!"'
+}
+
+backup () {
+    arg-check $1 "No backup directory given"
+
+    printf "Backing up to ${1}\n\n"
+    for dir in `cat backup.list`; do
+        eval "rsync -avz ${dir} ${1}"
+    done
+
+    eval 'cowsay "Backup complete!"'
+}
+
+uninstall () {
+
+    # get rid of $HOME links
+    for dotfile in `find ${dotdir} -maxdepth 1 -name '.[a-zA-Z0-9]*' -printf '%f\0 '`; do
+        unlink "~/${dotfile}"
+    done
+
+    # remove these dotfiles and nix
+    rm -rf ~/.config/dotfiles \
+       /nix ~/.nix-channels ~/.nix-defexpr
+
+    echo "Dotfiles removed"
+}
+
+# deploy to new workstation via ssh
+# push () {
+#     arg-check $1 "No backup directory given"
+
+#     echo "Pushing configs to ${1}"
+#     nix-copy-closure $1 nix-pkgs
+# }
+
+case $1 in
+    install)
+        install;;
+    backup)
+        backup $2 $3;;
+    uninstall)
+        uninstall;;
+    push)
+        # TODO: push/pull envs across workstations, development on this is prn :p
+        "not done yet";;
+    *)
+        help;;
+esac
