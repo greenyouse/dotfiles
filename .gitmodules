@@ -1,0 +1,193 @@
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/ibuffer-git"]
+        path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/ibuffer-git
+        url = git://github.com/jrockway/ibuffer-git.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/smex"]
+        path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/smex
+        url = git://github.com/nonsequitur/smex.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/align-cljlet"]
+        path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/align-cljlet
+        url = git://github.com/gstamp/align-cljlet.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/volatile-highlights"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/volatile-highlights
+        url = git://github.com/k-talo/volatile-highlights.el.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/refheap"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/refheap
+        url = git://github.com/Raynes/refheap.el.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/undo-tree"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/undo-tree
+        url = git://github.com/emacsmirror/undo-tree.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/lang-pack/vendor/submodules/actionscript-mode"]
+        path = .emacs.d/packs/dev/lang-pack/vendor/submodules/actionscript-mode
+        url = git://github.com/austinhaas/actionscript-mode.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/lang-pack/vendor/submodules/yaml-mode"]
+        path = .emacs.d/packs/dev/lang-pack/vendor/submodules/yaml-mode
+        url = git://github.com/yoshiki/yaml-mode.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/scratch"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/scratch
+        url = git://github.com/samaaron/scratch-el.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/yasnippet"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/yasnippet
+        url = git://github.com/capitaomorte/yasnippet.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/elisp-slime-nav"]
+        path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/elisp-slime-nav
+        url = git://github.com/purcell/elisp-slime-nav.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/gist"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/gist
+        url = git://github.com/defunkt/gist.el.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/gh"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/gh
+        url = git://github.com/sigma/gh.el.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/pcache"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/pcache
+        url = git://github.com/sigma/pcache.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/logito"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/logito
+        url = git://github.com/sigma/logito.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/popwin"]
+        path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/popwin
+        url = git://github.com/m2ym/popwin-el.git
+        ignore = untracked
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/clojure-mode"]
+        path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/clojure-mode
+        url = git://github.com/clojure-emacs/clojure-mode.git
+[submodule ".emacs.d/packs/dev/git-pack/vendor/submodules/magit"]
+        path = .emacs.d/packs/dev/git-pack/vendor/submodules/magit
+        url = git://github.com/magit/magit.git
+[submodule ".emacs.d/packs/dev/lang-pack/vendor/submodules/js2"]
+        path = .emacs.d/packs/dev/lang-pack/vendor/submodules/js2
+        url = git://github.com/mooz/js2-mode.git
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/popup-el"]
+        path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/popup-el
+        url = git://github.com/auto-complete/popup-el.git
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/fuzzy-el"]
+        path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/fuzzy-el
+        url = git://github.com/auto-complete/fuzzy-el.git
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/browse-kill-ring"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/browse-kill-ring
+        url = git://github.com/samaaron/browse-kill-ring.git
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/expand-region"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/expand-region
+        url = git://github.com/magnars/expand-region.el.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/exec-path-from-shell"]
+        path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/exec-path-from-shell
+        url = git://github.com/purcell/exec-path-from-shell.git
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/ace-jump-mode"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/ace-jump-mode
+        url = git://github.com/winterTTr/ace-jump-mode.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/auto-compile"]
+        path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/auto-compile
+        url = git://github.com/tarsius/auto-compile.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/packed"]
+        path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/packed
+        url = git://github.com/tarsius/packed.git
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/multiple-cursors"]
+        path = .emacs.d/packs/dev/power-pack/vendor/submodules/multiple-cursors
+        url = git://github.com/magnars/multiple-cursors.el.git
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/emacs-git-gutter"]
+	path = .emacs.d/packs/dev/power-pack/vendor/submodules/emacs-git-gutter
+	url = git://github.com/syohex/emacs-git-gutter.git
+[submodule ".emacs.d/packs/dev/lang-pack/vendor/submodules/glsl-mode"]
+	path = .emacs.d/packs/dev/lang-pack/vendor/submodules/glsl-mode
+	url = git://github.com/jimhourihan/glsl-mode.git
+[submodule ".emacs.d/packs/dev/org-pack/vendor/submodules/org-mode"]
+	path = .emacs.d/packs/dev/org-pack/vendor/submodules/org-mode
+	url = git://orgmode.org/org-mode.git
+[submodule ".emacs.d/packs/dev/git-pack/vendor/submodules/git-modes"]
+	path = .emacs.d/packs/dev/git-pack/vendor/submodules/git-modes
+	url = git://github.com/magit/git-modes.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/dash"]
+	path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/dash
+	url = git://github.com/magnars/dash.el.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/pkg-info"]
+	path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/pkg-info
+	url = git://github.com/lunaryorn/pkg-info.el.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/s"]
+	path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/s
+	url = git://github.com/magnars/s.el.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/flx"]
+	path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/flx
+	url = git://github.com/lewang/flx.git
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/floobits"]
+	path = .emacs.d/packs/dev/power-pack/vendor/submodules/floobits
+	url = git://github.com/Floobits/floobits-emacs.git
+[submodule ".emacs.d/packs/dev/power-pack/vendor/submodules/wc-mode"]
+	path = .emacs.d/packs/dev/power-pack/vendor/submodules/wc-mode
+	url = git://github.com/bnbeckwith/wc-mode.git
+[submodule ".emacs.d/packs/dev/lang-pack/vendor/submodules/haskell"]
+	path = .emacs.d/packs/dev/lang-pack/vendor/submodules/haskell
+	url = git://github.com/haskell/haskell-mode.git
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/cider"]
+	path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/cider
+	url = git://github.com/clojure-emacs/cider.git
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/eval-sexp-fu"]
+	path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/eval-sexp-fu
+	url = git://github.com/hchbaw/eval-sexp-fu.el.git
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/auto-complete"]
+	path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/auto-complete
+	url = git://github.com/auto-complete/auto-complete.git
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/clj-refactor"]
+	path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/clj-refactor
+	url = git://github.com/magnars/clj-refactor.el.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/epl"]
+        path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/epl
+        url = git://github.com/cask/epl.git
+[submodule ".emacs.d/packs/dev/foundation-pack/vendor/submodules/find-file-in-project"]
+	path = .emacs.d/packs/dev/foundation-pack/vendor/submodules/find-file-in-project
+	url = https://github.com/technomancy/find-file-in-project
+[submodule ".emacs.d/packs/dev/clojure-pack/vendor/submodules/ac-cider"]
+	path = .emacs.d/packs/dev/clojure-pack/vendor/submodules/ac-cider
+	url = git://github.com/clojure-emacs/ac-cider.git
+[submodule ".live-packs/evil/lib/emacs-powerline"]
+        path = .live-packs/evil/lib/emacs-powerline
+        url = git://github.com/jonathanchu/emacs-powerline.git
+[submodule ".live-packs/evil/lib/evil"]
+        path = .live-packs/evil/lib/evil
+        url = git://github.com/emacsmirror/evil.git
+[submodule ".live-packs/evil/lib/evil-leader"]
+        path = .live-packs/evil/lib/evil-leader
+        url = git://github.com/cofi/evil-leader.git
+[submodule ".live-packs/racket/lib/ac-geiser"]
+        path = .live-packs/racket/lib/ac-geiser
+        url = git://github.com/xiaohanyu/ac-geiser.git
+[submodule ".live-packs/racket/lib/geiser"]
+        path = .live-packs/racket/lib/geiser
+        url = git://github.com/jaor/geiser.git
+[submodule ".live-packs/clojure/lib/auto-complete"]
+        path = .live-packs/clojure/lib/auto-complete
+        url = git://github.com/auto-complete/auto-complete.git
+[submodule ".live-packs/clojure/lib/cider"]
+        path = .live-packs/clojure/lib/cider
+        url = git://github.com/clojure-emacs/cider.git
+[submodule ".live-packs/clojure/lib/cljsbuild-mode"]
+        path = .live-packs/clojure/lib/cljsbuild-mode
+        url = https://github.com/kototama/cljsbuild-mode
+[submodule ".live-packs/clojure/lib/clojure-mode"]
+        path = .live-packs/clojure/lib/clojure-mode
+        url = git://github.com/clojure-emacs/clojure-mode.git
+[submodule ".live-packs/clojure/lib/emacs-web-server"]
+        path = .live-packs/clojure/lib/emacs-web-server
+        url = git://github.com/eschulte/emacs-web-server.git
+[submodule ".live-packs/clojure/lib/eval-sexp-fu"]
+        path = .live-packs/clojure/lib/eval-sexp-fu
+        url = git://github.com/hchbaw/eval-sexp-fu.el.git
+[submodule ".live-packs/clojure/lib/fuzzy-el"]
+        path = .live-packs/clojure/lib/fuzzy-el
+        url = git://github.com/auto-complete/fuzzy-el.git
+[submodule ".live-packs/clojure/lib/popup-el"]
+        path = .live-packs/clojure/lib/popup-el
+        url = git://github.com/auto-complete/popup-el.git
