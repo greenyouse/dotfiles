@@ -6,16 +6,16 @@ My primary setup is Ubuntu but this should work across other distros and
 systems like OSX or BSDs.
 
 To get rolling take a look at the
-[woot](https://github.com/greenyouse/dotfiles/blob/woot)
+[woot](https://github.com/greenyouse/dotfiles/blob/master/woot)
 script which handles installs and backups. I chose to use the
 [nix pkg manager](https://nixos.org/nix/) for most of the tools I
 use since it works well cross platform and has
 declarative/immutable/static build awesomeness. The list of nix
-pkgs is in [packages.nix](https://github.com/greenyouse/dotfiles/blob/packages.nix).
+pkgs is in [packages.nix](https://github.com/greenyouse/dotfiles/blob/master/packages.nix).
 
 For any packages not supported by `nix` you can use your native package
 manager and swap out `apt-get` in the woot script for whatever you'll use. I made
-[extra-packages.txt](https://github.com/greenyouse/dotfiles/blob/extra-packages.txt)
+[extra-packages.txt](https://github.com/greenyouse/dotfiles/blob/master/extra-packages.txt)
 for any extra packages and you should tweak both of the packages files to your liking.
 
 ## Install
