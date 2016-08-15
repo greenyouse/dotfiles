@@ -27,6 +27,30 @@ arg-check () {
     fi
 }
 
+extra-setup () {
+    # installs extra pkgs using the native pkg manager
+    os_str=`uname -s`
+    case $os_str in
+        *Linux*)
+            # find the GNU/Linux distro and install
+            dist_str=`cat /etc/*-release | uniq -u | grep ^NAME=`
+            case $dist_str in
+                *Ubuntu*)
+                    . ubuntu.sh;;
+                *)
+                    echo "distro ${dist_str} not set up yet";;
+            esac;;
+        # FreeBSD)
+        # ;;
+        # OpenBSD)
+        # ;;
+        # OSX)
+        # ;;
+        *)
+            echo "${os_str} not set up yet";;
+    esac
+}
+
 # TODO add another script for VPNs + private files like ssh
 install () {
     if !(hash nix-env >/dev/null 2>&1); then
@@ -41,8 +65,8 @@ install () {
     echo "Grabbing nix packages"
     nix-env -f packages.nix -i
 
-    echo "Getting apt packages"
-    sudo apt-get install `cat extra-packages.txt`
+    # install any extra packages not supported by Nix
+    extra-setup
 
     echo "Writing files from backup"
     for dir in `cat backup.list`; do

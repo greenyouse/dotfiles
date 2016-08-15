@@ -26,7 +26,7 @@
 
 (defcommand chrome-dev () ()
             "Run or raise the dev version of Chromium"
-            (run-or-raise "chrome-dev" '(:class "chromium")))
+            (run-or-raise "google-chrome-stable" '(:class "chrome")))
 
 (defcommand inkscape () ()
             "Run or raise Inkscape"

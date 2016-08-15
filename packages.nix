@@ -1,7 +1,8 @@
  with (import <nixpkgs> {});
 
 # most things commented out aren't available yet
- { inherit hello
+ { inherit
+ acpi
  # amixer
  # chrome
  # chromium
@@ -25,6 +26,7 @@
  mplayer
  nmap
  # npm
+ nodejs
  openvpn
  p7zip
  pcsx2
@@ -35,13 +37,12 @@
  # shen
  # sixad
  stumpwm
- tor-browser
- transmission
+ # tor-browser
+ transmission-gtk
  # unrar
  vim
  wget
  wine
- wireshark
- xbacklight
+ # xbacklight
  xsel
 ;}
