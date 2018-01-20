@@ -6,11 +6,11 @@
       "Let the hacking commence!")
 
 ;; wallpaper
-(run-shell-command "display -window root /home/shingen/Pictures/wallpapers/winter.jpg")
+(run-shell-command "display -window root $HOME/Pictures/wallpapers/windows.jpg")
 
 (defcommand reader () ()
             "Speak the selected text"
-            (run-shell-command "xsel | espeak -s 200"))
+            (run-shell-command "xsel | espeak -v en-us -s 400"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -18,23 +18,30 @@
 
 (defcommand firefox () ()
             "Run or raise Firefox"
-            (run-or-raise "firefox -P normal" '(:class "Firefox")))
+            (run-or-raise "ffdev -P normal" '(:class "Firefox")))
 
 (defcommand chromium () ()
             "Run or raise Chromium"
-            (run-or-raise "chromium-browser" '(:class "chromium")))
+            (run-or-raise "chromium-browser" '(:class "Chromium")))
 
 (defcommand chrome-dev () ()
-            "Run or raise the dev version of Chromium"
-            (run-or-raise "google-chrome-stable" '(:class "chrome")))
+            "Run or raise the version of Chromium"
+            (run-or-raise "google-chrome" '(:class "Chrome")))
+
+(defcommand opera () ()
+            "Run or raise the version of Opera"
+            (run-or-raise "opera" '(:class "Opera")))
 
 (defcommand inkscape () ()
             "Run or raise Inkscape"
             (run-or-raise "inkscape" '(:class "Inkscape")))
 
+(defcommand krita () ()
+            (run-or-raise "krita" '(:class "Krita")))
+
 (defcommand tor () ()
             "Run or raise Tor"
-            (run-or-raise "tor-browser" '(:class "Tor")))
+            (run-or-raise "tor" '(:class "Tor")))
 
 (defcommand evince () ()
             "Run or raise Evince"
@@ -48,8 +55,20 @@
             "Run or raise GIMP"
             (run-or-raise "gimp" '(:class "GIMP")))
 
+(defcommand postman () ()
+            "Run or raise Postman"
+            (run-or-raise "Postman" '(:class "POSTMAN")))
+
+;; (defcommand terminal () ()
+;;             (run-or-raise "gnome-terminal" '(:class "terminal")))
 (defcommand terminal () ()
-            (run-or-raise "gnome-terminal" '(:class "terminal")))
+  (run-or-raise "xterm" '(:class "terminal")))
+
+(defcommand slack () ()
+            (run-or-raise "slack" '(:class "Slack")))
+
+(defcommand nylas() ()
+            (run-or-raise "nylas-mail" '(:class "Nylas")))
 
 (defcommand remote-emacs () ()
             (run-or-raise "emacs" '(:title "emacs@Kiyosu")))
@@ -89,17 +108,24 @@
 (define-keysym #x1008ff12 "XF86AudioMute")
 (define-keysym #x1008ff13 "XF86AudioRaiseVolume")
 
+(defun speak-vol ()
+  "Speaks the current volume level (for great hearing loss avoidance)"
+  (run-shell-command "amixer get Master | grep dB | awk '{print $4}' | espeak -s 300"))
+
 (defcommand vol-up () ()
             "Turns up the volume"
-            (run-shell-command "amixer set Master 2+"))
-
-(defcommand vol-mute () ()
-            "Toggles volume muting"
-            (run-shell-command "amixer set Master toggle"))
+            (run-shell-command "amixer set Master 2+")
+            (speak-vol))
 
 (defcommand vol-down () ()
             "Turns down the volume"
-            (run-shell-command "amixer set Master 2-"))
+            (run-shell-command "amixer set Master 2-")
+            (speak-vol))
+
+(defcommand vol-mute () ()
+            "Toggles volume muting for headphones"
+            (run-shell-command "amixer set Master toggle")
+            (run-shell-command "amixer set Headphone toggle"))
 
 (define-keysym #x1008ff03 "XF86MonBrightnessDown")
 (define-keysym #x1008ff02 "XF86MonBrightnessUp")
@@ -132,11 +158,15 @@
 (define-key *app-map* (kbd "f") "firefox")
 (define-key *app-map* (kbd "c") "chromium")
 (define-key *app-map* (kbd "d") "chrome-dev")
+(define-key *app-map* (kbd "o") "opera")
 (define-key *app-map* (kbd "i") "inkscape")
+(define-key *app-map* (kbd "k") "krita")
 (define-key *app-map* (kbd "t") "tor")
 (define-key *app-map* (kbd "e") "evince")
 (define-key *app-map* (kbd "r") "rhythmbox")
-(define-key *app-map* (kbd "p") "gimp")
+(define-key *app-map* (kbd "s") "slack")
+(define-key *app-map* (kbd "q") "gimp")
+(define-key *app-map* (kbd "p") "postman")
 (define-key *app-map* (kbd "g") "abort")
 (define-key *app-map* (kbd "C-g") "abort")
 
@@ -149,6 +179,13 @@
 (define-key *lang-map* (kbd "e") "to-en")
 (define-key *lang-map* (kbd "g") "abort")
 (define-key *lang-map* (kbd "C-g") "abort")
+
+
+;; (define-key *top-map* (kbd "F3") "vol-mute")
+;; (define-key *top-map* (kbd "F5") "vol-down")
+;; (define-key *top-map* (kbd "F6") "vol-up")
+;; (define-key *top-map* (kbd "F8") "brightness-down")
+;; (define-key *top-map* (kbd "F9") "brightness-up")
 
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "vol-up")
 (define-key *top-map* (kbd "XF86AudioMute") "vol-mute")

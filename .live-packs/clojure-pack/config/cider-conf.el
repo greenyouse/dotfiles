@@ -17,7 +17,7 @@
   '(progn
      (add-to-list 'ac-modes 'cider-mode)
      (add-to-list 'ac-modes 'cider-repl-mode)))
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
+(comment (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode))
 (add-hook 'cider-repl-mode-hook
           (lambda ()
              (paredit-mode 1)))
@@ -34,3 +34,6 @@
 (setq cider-repl-pop-to-buffer-on-connect nil)
 (setq cider-show-error-buffer 'except-in-repl)
 (setq nrepl-hide-special-buffers t)
+
+
+(setq cider-lein-parameters "repl :headless :host localhost")

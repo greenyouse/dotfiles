@@ -16,3 +16,4 @@
 (live-load-config-file "evil-leader-conf.el")
 (live-load-config-file "evil-conf.el")
 (live-load-config-file "emacs-powerline-conf.el")
+(live-load-config-file "evil-magit.el")

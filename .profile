@@ -21,14 +21,16 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# fix touchpad issues under stumpwm
-synclient VertEdgeScroll=0 HorizTwoFingerScroll=1 PalmDetect=1 ClickFinger1=0 ClickFinger2=0 TapButton1=0 TapButton2=0
-
 # sometimes xmodmap won't load
-xmodmap ~/.Xmodmap
+# xmodmap ~/.Xmodmap
 
 # android development toolkit
 # PATH=$PATH:$HOME/local/adt/tools:$HOME/local/adt/platform-tools
 
 # for loading nix
-. /home/nobunaga/.nix-profile/etc/profile.d/nix.sh
+# . /home/nobunaga/.nix-profile/etc/profile.d/nix.sh
+
+# start flux for eye strain
+# Ubuntu make installation of Ubuntu Make binary symlink
+PATH=/home/oracle/.local/share/umake/bin:$PATH
+

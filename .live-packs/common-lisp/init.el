@@ -5,5 +5,5 @@
 (require 'slime-autoloads)
 
 ;;(setq inferior-lisp-program "/usr/local/bin/lisp")
-(setq inferior-lisp-program "/usr/bin/clisp")
+(setq inferior-lisp-program "clisp")
 (setq slime-contribs '(slime-fancy))

@@ -3,7 +3,7 @@
 # special setup stuff for ubuntu
 
 echo "Getting apt packages"
-sudo apt install `cat extra-packages.txt`
+sudo apt-get -y install `cat ubuntu-pkgs`
 
 
 # install google-chrome
@@ -25,8 +25,19 @@ EOF
 
 # one computer needs a driver for the screen
 if [[ `lspci | grep Skylake` ]]; then
-    sudo apt-add-repository ppa:system76-dev/stable
+    sudo apt-add-repository -y ppa:system76-dev/stable
     sudo apt update
     sudo apt full-upgrade
-    sudo apt install system76-driver
+    sudo apt-get -y install system76-driver
 fi
+
+# install java 8
+sudo add-apt-repository -y ppa:webupd8team/java
+sudo apt-get update
+# auto signs the license
+echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+sudo apt-get -y install oracle-java8-installer
+sudo apt-get -y install oracle-java8-set-default
+
+# add latest erlang
+sudo apt-get -y install erlang

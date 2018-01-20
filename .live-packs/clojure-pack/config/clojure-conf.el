@@ -26,6 +26,13 @@
 
 (require 'clojure-mode-extra-font-locking)
 
+(eval-after-load 'find-file-in-project
+  '(add-to-list 'ffip-patterns "*.clj"))
+
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (setq buffer-save-without-query t)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Indentation
 
@@ -33,19 +40,23 @@
 (add-hook 'clojure-mode-hook '(lambda ()
                                 (local-set-key (kbd "RET") 'newline-and-indent)))
 
-;; doing clj indentation
-(put 'implement 'clojure-backtracking-indent '(4 (2)))
-(put 'letfn 'clojure-backtracking-indent '((2) 2))
-(put 'proxy 'clojure-backtracking-indent '(4 4 (2)))
-(put 'reify 'clojure-backtracking-indent '((2)))
-(put 'deftype 'clojure-backtracking-indent '(4 4 (2)))
-(put 'defrecord 'clojure-backtracking-indent '(4 4 (2)))
-(put 'defprotocol 'clojure-backtracking-indent '(4 (2)))
-(put 'extend-type 'clojure-backtracking-indent '(4 (2)))
-(put 'extend-protocol 'clojure-backtracking-indent '(4 (2)))
-(put 'specify 'clojure-backtracking-indent '(4 (2)))
-(put 'specify! 'clojure-backtracking-indent '(4 (2)))
+;; (setq clojure-align-forms-automatically 't)
 
+;; align args
+;; (setq clojure-indent-style :always-align)
+
+;; doing clj indentation
+;; (put 'implement 'clojure-backtracking-indent '(4 (2)))
+;; (put 'letfn 'clojure-backtracking-indent '((2) 2))
+;; (put 'proxy 'clojure-backtracking-indent '(4 4 (2)))
+;; (put 'reify 'clojure-backtracking-indent '((2)))
+;; (put 'deftype 'clojure-backtracking-indent '(4 4 (2)))
+;; (put 'defrecord 'clojure-backtracking-indent '(4 4 (2)))
+;; (put 'defprotocol 'clojure-backtracking-indent '(4 (2)))
+;; (put 'extend-type 'clojure-backtracking-indent '(4 (2)))
+;; (put 'extend-protocol 'clojure-backtracking-indent '(4 (2)))
+;; (put 'specify 'clojure-backtracking-indent '(4 (2)))
+;; (put 'specify! 'clojure-backtracking-indent '(4 (2)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; General Clojure stuff
@@ -73,7 +84,12 @@
           (lambda ()
             (setq buffer-save-without-query t)))
 
-(setq auto-mode-alist (append '(("\\.cljs$" . clojure-mode))
+;; use clojurescript mode
+(comment
+ (setq auto-mode-alist (append '(("\\.cljs$" . clojure-mode))
+                               auto-mode-alist)))
+
+(setq auto-mode-alist (append '(("\\.cljc$" . clojure-mode))
                         auto-mode-alist))
 
 (dolist (x '(scheme emacs-lisp lisp clojure))

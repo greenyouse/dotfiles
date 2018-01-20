@@ -78,6 +78,15 @@
     (setq myUrl (concat "http://clojuredocs.org/search?x=0&y=0&q=" myWord))
     (browse-url myUrl)))
 
+(defun cider-figwheel-repl ()
+  (interactive)
+  (with-current-buffer (cider-current-repl-buffer)
+    (goto-char (point-max))
+    (insert "(require 'figwheel-sidecar.repl-api)
+             (figwheel-sidecar.repl-api/start-figwheel!) ; idempotent
+             (figwheel-sidecar.repl-api/cljs-repl)")
+    (cider-repl-return)))
+
 ;; some custom emacs functions should eventually use this
 (defun my-macro-query ()
   "Prompt for input using minibuffer during kbd macro execution.
@@ -94,7 +103,7 @@
   (interactive)
   (let ((answer (yes-or-no-p "Initiate nuclear countdown sequence?")))
     (when answer
-      ;; for last minute stopping and more siliness
+      ;; for last minute stopping and more silliness
       (sleep-for 1)
       (message "3")
       (sleep-for 1)
@@ -133,7 +142,7 @@
 
   ;; various Clojure(Script) + Cider commands
   "mw" 'delete-other-windows
-  "ms" (lambda () (interactive) (split-window-right 120))
+  "ms" 'split-window-right
   "mv" 'split-window-vertically
   "mn" 'cider-jack-in
   "mq" 'cider-quit
@@ -153,6 +162,7 @@
   "mzp" (kbd "A  (cemerick.piggieback/cljs-repl\ i:repl-env\ i(cemerick.austin/exec-env))") ;; phantomjs brepl (won't work with native, non closure js libs)
   "mzw" (kbd "A (require \ i'weasel.repl.websocket) (cemerick.piggieback/cljs-repl\ i:repl-env (weasel.repl.websocket/repl-env\
  i:ip\ i\"0.0.0.0\"\ i:port\ i9001)") ; weasel repl
+  "mzf" 'cider-figwheel-repl
   "mt" (kbd "A (run-tests)") ; for cljs testing, reload with browser refresh for now
   "ml" 'linum-mode
   "mp" (kbd "C-x p") ; refresh browser ala moz-repl
@@ -170,15 +180,16 @@
   "cu" 'cljs-lookup
   "cl" 'cljs-comment-divider
 
+  ;; clj namespace sorting
+  "cs" 'sort-lines
+
   ;; emacs helpers
   "," 'smex
   "ee" 'smex
   "es" 'shell
   "ed" 'close-shell
-  "et" 'read-only-mode ; for occur because it sets read-only
-  "eff" 'occur
-  "efa" 'multi-occur-in-this-mode
-  "efb" (interactive (switch-to-buffer "*Occur*"))
+  "eff" 'helm-imenu
+  "efm" 'helm-imenu-in-all-buffers
 
   ;; general word-editing macros
   "gk" 'delete-up-one

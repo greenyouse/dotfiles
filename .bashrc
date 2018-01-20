@@ -85,9 +85,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -alFhs'
+alias la='ls -Ahs'
+alias l='ls -CFhs'
+alias lh='ls -sh'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -117,15 +118,54 @@ fi
 set -o vi
 
 # pyserver for lazy people
-alias p="python -m SimpleHTTPServer"
+# alias p="python -m SimpleHTTPServer"
+alias p="python -m http.server"
 
-export EDITOR='vim'
+export EDITOR='vi'
 
 alias mv='mv -iv'
 alias cp='cp -iv'
 export CHROME_DEVEL_SANDBOX="/home/$(uname)/local/chrome/chrome_sandbox"
 
-export WINEARCH="win32"
+# export WINEARCH="win32"
 
 # for web-components-tester to pick up chrome
 export LAUNCHPAD_CHROME=/usr/bin/chromium-browser
+
+# set a default browser for emacs
+export BROWSER="~/local/firefox/firefox"
+
+# save the ruby gem for local development
+# export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
+
+###### for deep learning on AWS
+# to begin session run aws-get-p2 or aws-get-t2
+# source ~/Gits/startup/homework/courses/setup/aws-alias.sh
+
+# for scipy
+#PATH="$PATH:/home/tokugawa/.local/bin"
+
+# added by Anaconda2 4.4.0 installer
+#export PATH="/home/tokugawa/anaconda2/bin:$PATH"
+
+alias rebar=rebar3
+
+# switching to python3 for now, remove to revert back to python2
+alias python=python3
+
+# bon nochi appserver configs
+export DATABASE_URL=postgresql://postgres:postgres@localhost:5432/bonnochi
+
+# Postman for testing APIs
+alias Postman=$HOME/local/Postman/Postman
+
+# for apache-cxf
+export PATH=$PATH:"$HOME/local/apache-cxf-3.2.0/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH=$PATH:"$HOME/bin"
+
+export WINEARCH=win32

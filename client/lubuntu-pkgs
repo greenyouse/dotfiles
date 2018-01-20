@@ -1,0 +1,20 @@
+cryptsetup
+surf
+xcape
+redshift
+apt-file
+keepassx
+espeak
+xsel
+git
+powertop
+acpi
+deluge
+
+# DWM
+make
+pkg-config
+libx11-dev
+libxinerama-dev
+libxft-dev
+libxrandr-dev

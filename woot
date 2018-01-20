@@ -5,21 +5,21 @@
 dotdir="${HOME}/.config/dotfiles"
 RED='\u001b[31m'
 
-color-text () {
+function color-text () {
     printf "${1} \u001b[0m\n\n"
 }
 
-alert () {
+function alert () {
     color-text "${RED} ${1}"
 }
 
-help () {
+function help () {
     echo $'Usage: woot [options]\n'
-    echo $'Options:\n install\n backup [backup-directory]\n'
+    echo $'Options:\n install {server|client}\n backup [backup-directory]\n'
 }
 
 # check that a second arg was given otherwise throw with the err msg
-arg-check () {
+function error () {
     if [[ -z $2 ]]; then
         help
         alert "${1}"
@@ -27,16 +27,18 @@ arg-check () {
     fi
 }
 
-extra-setup () {
-    # installs extra pkgs using the native pkg manager
+# detects the OS/distro and calls the relevant client/server install script
+function pkg-installer () {
     os_str=`uname -s`
     case $os_str in
         *Linux*)
             # find the GNU/Linux distro and install
             dist_str=`cat /etc/*-release | uniq -u | grep ^NAME=`
             case $dist_str in
+                *Lubuntu*)
+                    . $1/lubuntu.sh;;
                 *Ubuntu*)
-                    . ubuntu.sh;;
+                    . $1/ubuntu.sh;;
                 *)
                     echo "distro ${dist_str} not set up yet";;
             esac;;
@@ -51,41 +53,49 @@ extra-setup () {
     esac
 }
 
+function client-install () {
+    pkg-installer client
+}
+
+function server-install () {
+    pkg-installer server
+}
+
 # TODO add another script for VPNs + private files like ssh
-install () {
-    if !(hash nix-env >/dev/null 2>&1); then
-        echo "Installing nix..."
-        curl https://nixos.org/nix/install | sh
+# still need ssh, etc. on server
+# old school network-manager configs for clients
+function install () {
 
-        # add a call for nix and initialize it
-        echo '\n#for loading nix\n. /home/nobunaga/.nix-profile/etc/profile.d/nix.sh' >> ~/.profile
-        . /home/nobunaga/.nix-profile/etc/profile.d/nix.sh
-    fi
+    case $1 in
+        server)
+            server-install;;
+        client)
+            client-install;;
+        *)
+            help
+            error "Specify install target: {client|server}"
+            return 0;;
+    esac
 
-    echo "Grabbing nix packages"
-    nix-env -f packages.nix -i
+    # FIXME: add backup prefix to $file here
+    # echo "Writing files from backup"
+    # for dir in `cat backup.list`; do
+    #     destination=`dirname ${dir}`
+    #     file=`basename ${dir}`
+    #     eval 'rsync -avz ${file} ${destination}'
+    # done
 
-    # install any extra packages not supported by Nix
-    extra-setup
-
-    echo "Writing files from backup"
-    for dir in `cat backup.list`; do
-        destination=`dirname ${dir}`
-        file=`basename ${dir}`
-        eval 'rsync -avz ${file} ${destination}'
-    done
-
-    # simple, error prone command for linking dotfiles to $HOME
-    printf 'Linking dotfiles\n\n'
-    for file in `find ${dotdir} -maxdepth 1 -name '.[a-zA-Z0-9]*' -printf '%f\0 '`; do
-        ln -s "${dotdir}/${file}" "${HOME}/${file}"
-    done
+    # basic, error prone command for linking dotfiles to $HOME
+    # printf 'Linking dotfiles\n\n'
+    # for file in `find ${dotdir} -maxdepth 1 -name '.[a-zA-Z0-9]*' -printf '%f\0 '`; do
+    #     ln -s "${dotdir}/${file}" "${HOME}/${file}"
+    # done
 
     eval 'cowsay "Install complete!"'
 }
 
-backup () {
-    arg-check $1 "No backup directory given"
+function backup () {
+    error $1 "No backup directory given"
 
     printf "Backing up to ${1}\n\n"
     for dir in `cat backup.list`; do
@@ -95,7 +105,7 @@ backup () {
     eval 'cowsay "Backup complete!"'
 }
 
-uninstall () {
+function uninstall () {
 
     # get rid of $HOME links
     for dotfile in `find ${dotdir} -maxdepth 1 -name '.[a-zA-Z0-9]*' -printf '%f\0 '`; do
@@ -103,30 +113,18 @@ uninstall () {
     done
 
     # remove these dotfiles and nix
-    rm -rf ~/.config/dotfiles \
-       /nix ~/.nix-channels ~/.nix-defexpr
+    rm -rf ~/.config/dotfiles
 
     echo "Dotfiles removed"
 }
 
-# deploy to new workstation via ssh
-# push () {
-#     arg-check $1 "No backup directory given"
-
-#     echo "Pushing configs to ${1}"
-#     nix-copy-closure $1 nix-pkgs
-# }
-
 case $1 in
     install)
-        install;;
+        install $2;;
     backup)
         backup $2 $3;;
     uninstall)
         uninstall;;
-    push)
-        # TODO: push/pull envs across workstations, development on this is prn :p
-        "not done yet";;
     *)
         help;;
 esac
