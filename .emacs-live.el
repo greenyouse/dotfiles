@@ -85,6 +85,9 @@
 ;; use company mode (TODO: remove old autocomplete)
 ;; (add-hook 'after-init-hook 'global-company-mode)
 
+;; Emacs editing for term
+(evil-set-initial-state 'term-mode 'emacs)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Magit Setup

@@ -186,7 +186,7 @@
   ;; emacs helpers
   "," 'smex
   "ee" 'smex
-  "es" 'shell
+  "es" (lambda () (interactive) (ansi-term "bash"))
   "ed" 'close-shell
   "eff" 'helm-imenu
   "efm" 'helm-imenu-in-all-buffers
