@@ -173,3 +173,6 @@ export WINEARCH=win32
 # testing the Internet Archive Heritrix Crawler
 export HERITRIX_HOME=~/Gits/startup/hacks/heritrix-3.3.0-SNAPSHOT
 export JAVA_OPTS=-Xmx1024M
+
+# for yarn installs
+export PATH=$PATH:"$HOME/.yarn/bin"
