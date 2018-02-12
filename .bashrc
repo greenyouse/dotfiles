@@ -169,3 +169,7 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:"$HOME/bin"
 
 export WINEARCH=win32
+
+# testing the Internet Archive Heritrix Crawler
+export HERITRIX_HOME=~/Gits/startup/hacks/heritrix-3.3.0-SNAPSHOT
+export JAVA_OPTS=-Xmx1024M
