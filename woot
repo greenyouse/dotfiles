@@ -53,14 +53,6 @@ function pkg-installer () {
     esac
 }
 
-function client-install () {
-    pkg-installer client
-}
-
-function server-install () {
-    pkg-installer server
-}
-
 function link-to-home () {
     ln -s "${dotdir}/${1}" "~/${1}"
 }
@@ -71,11 +63,10 @@ function link-to-home () {
 function install () {
 
     case $1 in
-        # TODO: refactor these two calls
         server)
-            server-install;;
+            pkg-installer server;;
         client)
-            client-install;;
+            pkg-installer client;;
         mac)
             pkg-installer mac;;
         *)
