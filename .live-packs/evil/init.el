@@ -10,6 +10,7 @@
 (require 'powerline)
 
 (require 'evil)
+(require 'evil-core)
 (evil-mode 1)
 (require 'powerline)
 
