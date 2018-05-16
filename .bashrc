@@ -173,3 +173,15 @@ export WINEARCH=win32
 # testing the Internet Archive Heritrix Crawler
 export HERITRIX_HOME=~/Gits/startup/hacks/heritrix-3.3.0-SNAPSHOT
 export JAVA_OPTS=-Xmx1024M
+
+alias reload='source ~/.bashrc';
+# ls files, filter with grep
+alias gls='la | grep -i'
+alias gll='ll | grep -i'
+# add a new alias
+alias add-alias='tee -a ~/.bashrc && reload'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
