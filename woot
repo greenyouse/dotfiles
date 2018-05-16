@@ -61,6 +61,10 @@ function server-install () {
     pkg-installer server
 }
 
+function link-to-home () {
+    ln -s "${dotdir}/${1}" "~/${1}"
+}
+
 # TODO add another script for VPNs + private files like ssh
 # still need ssh, etc. on server
 # old school network-manager configs for clients
@@ -88,11 +92,13 @@ function install () {
     #     eval 'rsync -avz ${file} ${destination}'
     # done
 
-    # basic, error prone command for linking dotfiles to $HOME
-    # printf 'Linking dotfiles\n\n'
-    # for file in `find ${dotdir} -maxdepth 1 -name '.[a-zA-Z0-9]*' -printf '%f\0 '`; do
-    #     ln -s "${dotdir}/${file}" "${HOME}/${file}"
-    # done
+    printf 'Linking dotfiles\n\n'
+    link-to-home .emacs.d
+    link-to-home .emacs-live.el
+    link-to-home .live-packs
+    link-to-home .bashrc
+    link-to-home .profile
+    link-to-home .ackrc
 
     eval 'cowsay "Install complete!"'
 }
