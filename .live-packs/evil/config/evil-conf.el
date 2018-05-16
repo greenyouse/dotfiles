@@ -13,3 +13,6 @@
 
 ;; jj for ending edit
 (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+
+;; Emacs for editing term
+(evil-set-initial-state 'term-mode 'emacs)
