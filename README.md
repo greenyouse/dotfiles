@@ -2,8 +2,7 @@
 
 Here are some configs that I've been using for a while.
 
-My primary setup is Ubuntu but this should work across other distros and
-systems like OSX or BSDs.
+My primary setup is Ubuntu but this should work for OSX too.
 
 To get rolling take a look at the
 [woot](https://github.com/greenyouse/dotfiles/blob/master/woot)
@@ -20,10 +19,12 @@ for any extra packages and you should tweak both of the packages files to your l
 
 ## Install
 
+Download and unzip the repo:
+https://github.com/greenyouse/dotfiles/archive/master.zip
+
 The install should be something like:
 
 ```sh
-git clone https://github.com/greenyouse/dotfiles
 mv dotfiles ~/.config
 cd ~/.config/dotfiles
 # assumes your $HOME is clear of dotfiles like .bashrc or .profile
@@ -69,25 +70,11 @@ Gits
 ├── hacks # one-off projects, slightly better than /tmp
 ├── others # clones of good projects to read through
 ├── contribs
-├── work # things that pay bills
 └── personal
     ├── public # stuff on GitHub
-    ├── private # stuff umm... not on GitHub
+    ├── private # stuff not on GitHub
     ├── blog
     └── etc # other dirs for other things
 ```
-
-## todos
-
-Not going to work on this stuff until I am forced to (like if my
-computer crashes again) but:
-
-- improve commands for installing proprietary pkgs like Java and
-  google-chrome
-- make commands for network installs via push pkgs or pull pkgs
-- add rsync calls for syncing private files
-- add ibus setup
-
-Send a PR or file an issue if there's something you'd like to tweak.
 
 Happy Hacking!
