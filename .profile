@@ -34,3 +34,5 @@ fi
 # Ubuntu make installation of Ubuntu Make binary symlink
 PATH=/home/oracle/.local/share/umake/bin:$PATH
 
+# for yarn installs
+export PATH=$PATH:`yarn global bin`
