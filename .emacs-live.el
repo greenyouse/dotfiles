@@ -85,9 +85,6 @@
 ;; use company mode (TODO: remove old autocomplete)
 ;; (add-hook 'after-init-hook 'global-company-mode)
 
-;; Emacs editing for term
-(evil-set-initial-state 'term-mode 'emacs)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Magit Setup
@@ -264,6 +261,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; JavaScript
 
+;; TODO: indentation is pretty bad
+;; no typescript setup
+;; and it's kinda not set up for React development
+
 ;; Tern settings
 (add-to-list 'load-path "~/.live-packs/js-pack/lib/tern/emacs/")
 (autoload 'tern-mode "tern.el" nil t)
@@ -292,6 +293,7 @@
 (setq ac-js2-evaluate-calls t)
 
 ;; JSON settings
+;; TODO: turn off js-lint when in JSON
 (add-to-list 'auto-mode-alist '("\\.json?\\'" . json-mode))
 
 ;; indenting for JS + JSON
@@ -303,19 +305,19 @@
 (require 'web-mode)
 (require 'flycheck)
 
-;; TODO: try out js2-jsx-mode instead
+
+
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mjml?\\'" . web-mode))
-;; (add-to-list web-mode-content-types '("jsx" "\\jsx?$"))
-;; (add-to-list 'web-mode-comment-formats `("jsx" . "//"))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 
 ;; Bind M-n and M-p to navigate to the next/previous errors.
 (global-set-key (kbd "M-n") 'flycheck-next-error)
 (global-set-key (kbd "M-p") 'flycheck-previous-error)
 
-(add-to-list 'flycheck-eslint-rules-directories "/home/tokugawa/.eslintrc")
+(add-to-list 'flycheck-eslint-rules-directories "/home/oracle/.eslintrc")
 
-(setq flycheck-eslint-rules-directories '("/home/tokugawa"))
+(setq flycheck-eslint-rules-directories '("/home/oracle"))
 
 (setq flycheck-disabled-checkers '(javascript-jshint))
 (comment
@@ -333,10 +335,14 @@
    (flycheck-add-mode 'javascript-polylint 'web-mode)
    (setq flycheck-javascript-polylint-executable (concat npm-prefix "polylint"))))
 
-;; for React's JSX
-;; (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
-;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-;; (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
+;; eslint for JSX files
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (equal web-mode-content-type "jsx")
+              (flycheck-add-mode 'javascript-eslint 'web-mode)
+              ;; (flycheck-select-checker 'javascript-eslint)
+              ;; (tern-mode-enable)
+              )))
 
 ;; for gclosure code
 ;; (flycheck-add-mode 'javascript-gjslint 'js2-mode)
@@ -356,6 +362,9 @@ See URL `https://github.com/PolymerLabs/polylint'."
    :error-patterns ((error line-start "  <text>:" line ":" column ":" (message) line-end))
    :modes (web-mode js2-mode javascript-mode)))
 
+;; js2-refactor keybindings
+(js2r-add-keybindings-with-prefix "C-c C-m")
+
 ;; (flycheck-add-mode 'javascript-polylint 'web-mode)
 
 
@@ -374,7 +383,7 @@ See URL `https://github.com/PolymerLabs/polylint'."
 ;;   "alsaplayer" "--quiet" "--nosave" "--interface=text")
 
 (emms-default-players)
-(emms-standard)
+(emms-all)
 
 ;; (add-to-list 'emms-player-list 'emms-player-alsaplayer)
 
@@ -485,8 +494,8 @@ See URL `https://github.com/PolymerLabs/polylint'."
 ;;; Elixir
 
 ;; TODO: not working yet...
-(eval-after-load 'alchemist-mode
-  '(define-key alchemist-mode-map (kdb "C-M-x") 'alchemist-iex-send-region))
+;; (eval-after-load 'alchemist-mode
+;;   '(define-key alchemist-mode-map (kdb "C-M-x") 'alchemist-iex-send-region))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
