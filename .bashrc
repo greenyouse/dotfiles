@@ -181,7 +181,8 @@ alias gll='ll | grep -i'
 # add a new alias
 alias add-alias='tee -a ~/.bashrc && reload'
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+# prefixed because it interferes with actual commands
+alias a..="cd .."
+alias a...="cd ../.."
+alias a....="cd ../../.."
+alias a.....="cd ../../../.."
