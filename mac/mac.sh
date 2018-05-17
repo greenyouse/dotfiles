@@ -33,3 +33,8 @@ pushd $INSTALL_DIR
 wget https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
 https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=osx&lang=en-US
 popd
+
+# download node + npm, LTS
+pushd $INSTALL_DIR
+wget https://nodejs.org/dist/v8.11.2/node-v8.11.2.pkg
+popd

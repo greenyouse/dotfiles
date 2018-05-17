@@ -1,9 +1,17 @@
 ack
+coreutils
 cowsay
+curl
+docker
 emacs
 git
 httpie
 hub
+nmap
+nvm
 redshift
+ruby
 unzip
 wget
+wireshark
+yarn
