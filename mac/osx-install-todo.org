@@ -1,0 +1,5 @@
+Steps to finish the osx install:
+- [ ] open the packages
+- [ ] make caps_lock Ctrl_L
+- [ ] add Karabiner rule with GUI
+- [ ] download emacs.d settings

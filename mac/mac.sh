@@ -32,3 +32,6 @@ popd
 
 # move karabiner config
 mv mac/karabiner.json ~/.config/karabiner/assets/ctrl_esc.json
+
+# post-install reminder
+mv mac/osx-install-todo.org ~/
