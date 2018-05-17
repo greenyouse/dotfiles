@@ -28,7 +28,7 @@ The install should be something like:
 mv dotfiles ~/.config
 cd ~/.config/dotfiles
 # assumes your $HOME is clear of dotfiles like .bashrc or .profile
-./woot install
+./woot install client
 ```
 
 Backups go like this:
