@@ -18,9 +18,6 @@ function get-pkg () {
     popd
 }
 
-# github desktop
-get-pkg github-desktop "https://central.github.com/deployments/desktop/desktop/latest/darwin"
-
 # VSCode
 get-pkg vscode "https://go.microsoft.com/fwlink/?LinkID=620882"
 
