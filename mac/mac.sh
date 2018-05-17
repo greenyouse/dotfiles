@@ -32,3 +32,6 @@ popd
 pushd $INSTALL_DIR
 wget https://nodejs.org/dist/v8.11.2/node-v8.11.2.pkg
 popd
+
+# move karabiner config
+mv mac/karabiner.json ~/.config/karabiner/assets/ctrl_esc.json
