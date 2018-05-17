@@ -46,8 +46,8 @@ function pkg-installer () {
         # ;;
         # OpenBSD)
         # ;;
-        *Darwin*) # OSX
-        . $1/mac.sh ;;
+        *Darwin*) # OSX, just default to mac
+        . mac/mac.sh ;;
         *)
             echo "${os_str} not set up yet";;
     esac
