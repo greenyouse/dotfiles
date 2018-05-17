@@ -3,12 +3,8 @@
 # install homebrew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-function brew-install () {
-    brew install "${1}"
-}
-
 ### Install pkgs with brew
-brew install `cat osx-pkgs`
+brew install `cat mac/osx-pkgs`
 
 ### Install normal packages
 INSTALL_DIR="~/Downloads/mac-install"
