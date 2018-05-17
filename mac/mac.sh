@@ -21,9 +21,10 @@ function get-pkg () {
 # VSCode
 get-pkg vscode "https://go.microsoft.com/fwlink/?LinkID=620882"
 
-# download browsers (dmg files)
+# download packages (dmg/pkg files)
 pushd $INSTALL_DIR
 wget https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
+wget https://pqrs.org/osx/karabiner/files/Karabiner-Elements-12.0.0.dmg
 wget https://download-installer.cdn.mozilla.net/pub/devedition/releases/61.0b5/linux-x86_64/en-US/firefox-61.0b5.tar.bz2
 popd
 
