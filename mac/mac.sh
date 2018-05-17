@@ -24,7 +24,7 @@ get-pkg vscode "https://go.microsoft.com/fwlink/?LinkID=620882"
 # download browsers (dmg files)
 pushd $INSTALL_DIR
 wget https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
-https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=osx&lang=en-US
+wget https://download-installer.cdn.mozilla.net/pub/devedition/releases/61.0b5/linux-x86_64/en-US/firefox-61.0b5.tar.bz2
 popd
 
 # download node + npm, LTS
