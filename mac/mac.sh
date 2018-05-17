@@ -26,6 +26,7 @@ pushd $INSTALL_DIR
 wget https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg
 wget https://pqrs.org/osx/karabiner/files/Karabiner-Elements-12.0.0.dmg
 wget https://download-installer.cdn.mozilla.net/pub/devedition/releases/61.0b5/linux-x86_64/en-US/firefox-61.0b5.tar.bz2
+tar -xfj firefox-61.0b5.tar.bz2
 popd
 
 # download node + npm, LTS
